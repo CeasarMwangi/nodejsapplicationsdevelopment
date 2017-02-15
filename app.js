@@ -1,14 +1,14 @@
-var express = require('express');
+var express = require('express');// express nodejs framework
 var path = require('path');
 //var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+var routes = require('./routes/index');// load the router module into the app
 //var users = require('./routes/users');
 
-var app = express();
+var app = express();// create an instance/object of express framework
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,9 +22,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+/* setting global data in the app.locals */
 app.locals.appdata = require('./data.json');
-app.use('/', routes);
+
+/* route handling */
+// mount the router module to '/' path
+app.use('/', routes);// mapping to routes defined in the router module loaded into the app earier
 //app.use('/users', users);
 
 // catch 404 and forward to error handler
